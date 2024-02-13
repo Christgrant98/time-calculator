@@ -37,12 +37,13 @@ class TimeManagerPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 230, 230, 230),
       body: SafeArea(
-        child: Center(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width * .9,
-            child: const SingleChildScrollView(
-              child: TimeManagerForm(),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width * .9,
+              child: const TimeManagerForm(),
             ),
           ),
         ),
@@ -178,52 +179,56 @@ class _TimeManagerFormState extends State<TimeManagerForm> {
                       icon: CircleAvatar(
                         backgroundColor: generateRandomPastelColor(),
                         radius: 30,
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                       ),
                     ),
                   ],
                 ),
               if (savedRegister.isNotEmpty)
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .65,
-                  child: ListView.builder(
-                    itemCount: savedRegister.length,
-                    itemBuilder: (context, index) {
-                      savedRegister.reversed;
-                      return Card(
-                        borderOnForeground: false,
-                        color: Colors.white,
-                        elevation: 3,
-                        child: ListTile(
-                          trailing: CircleAvatar(
-                            backgroundColor: generateRandomPastelColor(),
-                            radius: 15,
-                            child: Text(
-                              '${index + 1}',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w900,
+                SingleChildScrollView(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * .55,
+                    child: ListView.builder(
+                      itemCount: savedRegister.length,
+                      itemBuilder: (context, index) {
+                        savedRegister.reversed;
+                        return Card(
+                          borderOnForeground: false,
+                          color: Colors.white,
+                          elevation: 3,
+                          child: ListTile(
+                            trailing: CircleAvatar(
+                              backgroundColor: generateRandomPastelColor(),
+                              radius: 15,
+                              child: Text(
+                                '${index + 1}',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Hours: ${savedRegister[index].hour.toString()}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 14),
+                                ),
+                                Text(
+                                  'Minutes: ${savedRegister[index].minute.toString()}',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 14),
+                                ),
+                              ],
+                            ),
                           ),
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Hours: ${savedRegister[index].hour.toString()}',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w900, fontSize: 14),
-                              ),
-                              Text(
-                                'Minutes: ${savedRegister[index].minute.toString()}',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w300, fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
             ],
