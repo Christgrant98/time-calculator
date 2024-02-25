@@ -7,8 +7,12 @@ environment:
   sdk: '>=3.2.5 <4.0.0'
 
 dependencies:
+  dio: ^5.4.1
+  flick_video_player: ^0.7.0
   flutter:
     sdk: flutter
+  video_player: ^2.8.2
+  vimeo_video_player: ^0.0.12
 
 dev_dependencies:
   flutter_test:
